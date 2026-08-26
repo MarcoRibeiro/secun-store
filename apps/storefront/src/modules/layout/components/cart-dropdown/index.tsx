@@ -7,6 +7,7 @@ import {
   Transition,
 } from "@headlessui/react"
 import { convertToLocale } from "@lib/util/money"
+import { ShoppingBag } from "@medusajs/icons"
 import { HttpTypes } from "@medusajs/types"
 import { Button } from "@modules/common/components/ui"
 import DeleteButton from "@modules/common/components/delete-button"
@@ -82,10 +83,17 @@ const CartDropdown = ({
       <Popover className="relative h-full">
         <PopoverButton className="h-full">
           <LocalizedClientLink
-            className="hover:text-ui-fg-base"
+            className="relative grid h-10 w-10 place-items-center rounded-md text-slate-200 transition hover:bg-sky-500/10 hover:text-sky-300"
             href="/cart"
+            aria-label="Bag"
+            title="Bag"
             data-testid="nav-cart-link"
-          >{`Cart (${totalItems})`}</LocalizedClientLink>
+          >
+            <ShoppingBag />
+            <span className="absolute right-1 top-1 grid h-4 min-w-[1rem] place-items-center rounded-full bg-sky-400 px-1 text-[10px] font-semibold leading-none text-slate-950">
+              {totalItems}
+            </span>
+          </LocalizedClientLink>
         </PopoverButton>
         <Transition
           show={cartDropdownOpen}
@@ -99,11 +107,11 @@ const CartDropdown = ({
         >
           <PopoverPanel
             static
-            className="hidden small:block absolute top-[calc(100%+1px)] right-0 bg-white border-x border-b border-gray-200 w-[420px] text-ui-fg-base"
+            className="absolute right-0 top-[calc(100%+1px)] hidden w-[420px] border-x border-b border-slate-800 bg-slate-950 text-slate-100 shadow-2xl shadow-black/40 small:block"
             data-testid="nav-cart-dropdown"
           >
             <div className="p-4 flex items-center justify-center">
-              <h3 className="text-large-semi">Cart</h3>
+              <h3 className="text-large-semi">Bag</h3>
             </div>
             {cartState && cartState.items?.length ? (
               <>
@@ -176,7 +184,7 @@ const CartDropdown = ({
                 </div>
                 <div className="p-4 flex flex-col gap-y-4 text-small-regular">
                   <div className="flex items-center justify-between">
-                    <span className="text-ui-fg-base font-semibold">
+                    <span className="font-semibold text-slate-200">
                       Subtotal{" "}
                       <span className="font-normal">(excl. taxes)</span>
                     </span>
@@ -205,7 +213,7 @@ const CartDropdown = ({
             ) : (
               <div>
                 <div className="flex py-16 flex-col gap-y-4 items-center justify-center">
-                  <div className="bg-gray-900 text-small-regular flex items-center justify-center w-6 h-6 rounded-full text-white">
+                  <div className="text-small-regular flex h-6 w-6 items-center justify-center rounded-full bg-sky-400 text-slate-950">
                     <span>0</span>
                   </div>
                   <span>Your shopping bag is empty.</span>
