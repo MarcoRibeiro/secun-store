@@ -9,6 +9,7 @@ import { listRegions } from "@lib/data/regions"
 import { StoreRegion } from "@medusajs/types"
 import { User } from "@medusajs/icons"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import BrandLogo from "@modules/layout/components/brand-logo"
 import CartButton from "@modules/layout/components/cart-button"
 import SideMenu from "@modules/layout/components/side-menu"
 import SearchPanel from "@modules/search/components/search-panel"
@@ -115,10 +116,10 @@ export default async function Nav({ countryCode }: { countryCode: string }) {
           <div className="absolute left-1/2 flex h-full -translate-x-1/2 items-center">
             <LocalizedClientLink
               href="/"
-              className="text-lg font-semibold uppercase tracking-[0.26em] text-white transition hover:text-sky-300"
+              className="flex items-center"
               data-testid="nav-store-link"
             >
-              Secun
+              <BrandLogo className="h-8 w-auto small:h-9" priority />
             </LocalizedClientLink>
           </div>
 

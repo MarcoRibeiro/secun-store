@@ -9,7 +9,7 @@ import { listProducts } from "@lib/data/products"
 import { getRegion } from "@lib/data/regions"
 
 export const metadata: Metadata = {
-  title: "Secun Store",
+  title: "Secunstore",
   description: "A darker premium storefront powered by Medusa.",
 }
 
@@ -29,7 +29,7 @@ export default async function Home(props: {
     },
   ] = await Promise.all([
     listCollections({
-      fields: "id, handle, title",
+      fields: "id,handle,title,metadata",
     }),
     listProducts({
       countryCode,

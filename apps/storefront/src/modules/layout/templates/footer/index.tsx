@@ -3,6 +3,7 @@ import { listCollections } from "@lib/data/collections"
 import { Text } from "@modules/common/components/ui"
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import BrandLogo from "@modules/layout/components/brand-logo"
 
 export default async function Footer() {
   const { collections } = await listCollections({
@@ -20,9 +21,9 @@ export default async function Footer() {
           <div className="max-w-xs">
             <LocalizedClientLink
               href="/"
-              className="txt-compact-xlarge-plus uppercase tracking-[0.24em] text-white hover:text-sky-300"
+              className="inline-flex items-center"
             >
-              Secun
+              <BrandLogo className="h-12 w-auto" />
             </LocalizedClientLink>
             <p className="mt-4 text-sm text-slate-500">
               Secure shopping with a darker, sharper storefront experience.
@@ -104,7 +105,7 @@ export default async function Footer() {
 
         <div className="mb-12 flex w-full justify-between text-slate-500">
           <Text className="txt-compact-small">
-            © {new Date().getFullYear()} Secun. All rights reserved.
+            © {new Date().getFullYear()} Secunstore. All rights reserved.
           </Text>
         </div>
       </div>

@@ -130,7 +130,7 @@ const SideMenu = ({ regions, locales, currentLocale }: SideMenuProps) => {
                         />
                       </div>
                       <Text className="txt-compact-small flex justify-between text-slate-400">
-                        © {new Date().getFullYear()} Secun. All rights
+                        © {new Date().getFullYear()} Secunstore. All rights
                         reserved.
                       </Text>
                     </div>

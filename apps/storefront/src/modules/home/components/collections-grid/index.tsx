@@ -1,6 +1,7 @@
 import Image from "next/image"
 
 import { listProducts } from "@lib/data/products"
+import { getMetadataImage } from "@lib/util/metadata-image"
 import { HttpTypes } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
@@ -59,7 +60,10 @@ export default async function CollectionsGrid({
 
       <div className="grid gap-3 small:grid-cols-2 small:grid-rows-2">
         {collectionsWithProducts.map(({ collection, product }, index) => {
-          const image = product?.thumbnail || product?.images?.[0]?.url
+          const image =
+            getMetadataImage(collection) ||
+            product?.thumbnail ||
+            product?.images?.[0]?.url
 
           return (
             <LocalizedClientLink

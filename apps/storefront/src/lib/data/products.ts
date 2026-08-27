@@ -52,6 +52,10 @@ export const listProducts = async ({
   const next = {
     ...(await getCacheOptions("products")),
   }
+  const cacheOptions =
+    process.env.NODE_ENV === "development"
+      ? { cache: "no-store" as const }
+      : { next, cache: "force-cache" as const }
 
   return sdk.client
     .fetch<{ products: HttpTypes.StoreProduct[]; count: number }>(
@@ -67,8 +71,7 @@ export const listProducts = async ({
           ...queryParams,
         },
         headers,
-        next,
-        cache: "force-cache",
+        ...cacheOptions,
       }
     )
     .then(({ products, count }) => {

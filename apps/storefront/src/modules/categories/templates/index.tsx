@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation"
 import { Suspense } from "react"
+import Image from "next/image"
 
+import { getMetadataImage } from "@lib/util/metadata-image"
 import InteractiveLink from "@modules/common/components/interactive-link"
 import SkeletonProductGrid from "@modules/skeletons/templates/skeleton-product-grid"
 import RefinementList from "@modules/store/components/refinement-list"
@@ -35,6 +37,7 @@ export default function CategoryTemplate({
   }
 
   getParents(category)
+  const categoryImage = getMetadataImage(category)
 
   return (
     <div
@@ -43,24 +46,48 @@ export default function CategoryTemplate({
     >
       <RefinementList sortBy={sort} data-testid="sort-by-container" />
       <div className="w-full">
-        <div className="flex flex-row mb-8 text-2xl-semi gap-4">
-          {parents &&
-            parents.map((parent) => (
-              <span key={parent.id} className="text-ui-fg-subtle">
-                <LocalizedClientLink
-                  className="mr-4 hover:text-black"
-                  href={`/categories/${parent.handle}`}
-                  data-testid="sort-by-link"
-                >
-                  {parent.name}
-                </LocalizedClientLink>
-                /
-              </span>
-            ))}
-          <h1 data-testid="category-page-title">{category.name}</h1>
+        <div className="relative mb-8 min-h-[260px] overflow-hidden border border-slate-800 bg-slate-900 p-8 small:min-h-[360px]">
+          {categoryImage ? (
+            <Image
+              src={categoryImage}
+              alt={category.name}
+              fill
+              sizes="100vw"
+              className="object-cover"
+              priority
+            />
+          ) : (
+            <div className="absolute inset-0 bg-[linear-gradient(135deg,#0f172a,#075985,#020617)]" />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent" />
+          <div className="relative flex min-h-[220px] flex-col justify-end small:min-h-[300px]">
+            {!!parents.length && (
+              <div className="mb-4 flex flex-wrap gap-2 text-sm text-slate-300">
+                {parents.map((parent) => (
+                  <LocalizedClientLink
+                    key={parent.id}
+                    className="hover:text-sky-300"
+                    href={`/categories/${parent.handle}`}
+                    data-testid="sort-by-link"
+                  >
+                    {parent.name}
+                  </LocalizedClientLink>
+                ))}
+              </div>
+            )}
+            <p className="text-small-semi uppercase tracking-[0.16em] text-sky-300">
+              Category
+            </p>
+            <h1
+              className="mt-2 text-3xl-regular text-white"
+              data-testid="category-page-title"
+            >
+              {category.name}
+            </h1>
+          </div>
         </div>
         {category.description && (
-          <div className="mb-8 text-base-regular">
+          <div className="mb-8 text-base-regular text-slate-300">
             <p>{category.description}</p>
           </div>
         )}

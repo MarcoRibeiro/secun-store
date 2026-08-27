@@ -6,6 +6,10 @@ export const listCategories = async (query?: Record<string, unknown>) => {
   const next = {
     ...(await getCacheOptions("categories")),
   }
+  const cacheOptions =
+    process.env.NODE_ENV === "development"
+      ? { cache: "no-store" as const }
+      : { next, cache: "force-cache" as const }
 
   const limit = query?.limit || 100
 
@@ -15,12 +19,11 @@ export const listCategories = async (query?: Record<string, unknown>) => {
       {
         query: {
           fields:
-            "*category_children, *products, *parent_category, *parent_category.parent_category",
+            "*category_children,*products,*parent_category,*parent_category.parent_category,+metadata",
           limit,
           ...query,
         },
-        next,
-        cache: "force-cache",
+        ...cacheOptions,
       }
     )
     .then(({ product_categories }) => product_categories)
@@ -32,17 +35,20 @@ export const getCategoryByHandle = async (categoryHandle: string[]) => {
   const next = {
     ...(await getCacheOptions("categories")),
   }
+  const cacheOptions =
+    process.env.NODE_ENV === "development"
+      ? { cache: "no-store" as const }
+      : { next, cache: "force-cache" as const }
 
   return sdk.client
     .fetch<HttpTypes.StoreProductCategoryListResponse>(
       `/store/product-categories`,
       {
         query: {
-          fields: "*category_children, *products",
+          fields: "*category_children,*products,+metadata",
           handle,
         },
-        next,
-        cache: "force-cache",
+        ...cacheOptions,
       }
     )
     .then(({ product_categories }) => product_categories[0])
