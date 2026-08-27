@@ -45,7 +45,7 @@ export default function CategoryTemplate({
       data-testid="category-container"
     >
       <div className="w-full">
-        <div className="relative mb-8 min-h-[260px] overflow-hidden border border-slate-800 bg-slate-900 p-8 small:min-h-[360px]">
+        <div className="relative mb-8 min-h-[150px] overflow-hidden border border-slate-800 bg-slate-900 p-5 small:min-h-[200px]">
           {categoryImage ? (
             <Image
               src={categoryImage}
@@ -59,7 +59,7 @@ export default function CategoryTemplate({
             <div className="absolute inset-0 bg-[linear-gradient(135deg,#0f172a,#075985,#020617)]" />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent" />
-          <div className="relative flex min-h-[220px] flex-col justify-end small:min-h-[300px]">
+          <div className="relative flex min-h-[110px] flex-col justify-end small:min-h-[160px]">
             {!!parents.length && (
               <div className="mb-4 flex flex-wrap gap-2 text-sm text-slate-300">
                 {parents.map((parent) => (
