@@ -30,11 +30,11 @@ const StoreTemplate = ({
     >
       <div className="w-full">
         <div className="mx-auto mb-8 max-w-[1040px]">
-          <p className="text-small-semi uppercase tracking-[0.16em] text-sky-300">
+          <p className="text-small-semi uppercase tracking-[0.16em] text-sky-600">
             Shop
           </p>
           <h1
-            className="mt-2 text-3xl-regular text-white"
+            className="mt-2 text-3xl-regular text-slate-950"
             data-testid="store-page-title"
           >
             All products

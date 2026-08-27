@@ -30,7 +30,7 @@ export default function CollectionTemplate({
   return (
     <div className="content-container py-10">
       <div className="w-full">
-        <div className="relative mb-8 min-h-[150px] overflow-hidden border border-slate-800 bg-slate-900 p-5 small:min-h-[200px]">
+        <div className="relative mb-8 min-h-[150px] overflow-hidden border border-slate-200 bg-white p-5 shadow-sm small:min-h-[200px]">
           {collectionImage ? (
             <Image
               src={collectionImage}
@@ -41,12 +41,12 @@ export default function CollectionTemplate({
               priority
             />
           ) : (
-            <div className="absolute inset-0 bg-[linear-gradient(135deg,#0f172a,#075985,#020617)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(135deg,#f8fafc,#7dd3fc,#ffffff)]" />
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/10 to-transparent" />
           <div className="relative flex min-h-[110px] items-end small:min-h-[160px]">
             <div>
-              <p className="text-small-semi uppercase tracking-[0.16em] text-sky-300">
+              <p className="text-small-semi uppercase tracking-[0.16em] text-sky-200">
                 Collection
               </p>
               <h1 className="mt-2 text-3xl-regular text-white">

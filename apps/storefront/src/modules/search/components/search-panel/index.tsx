@@ -45,35 +45,35 @@ export default function SearchPanel({ recommendedProducts }: SearchPanelProps) {
         aria-label="Search"
         title="Search"
         onClick={() => setOpen(true)}
-        className="grid h-10 w-10 place-items-center rounded-md text-slate-200 transition hover:bg-sky-500/10 hover:text-sky-300"
+        className="grid h-10 w-10 place-items-center rounded-md text-slate-700 transition hover:bg-sky-50 hover:text-sky-600"
         data-testid="search-button"
       >
         <MagnifyingGlass />
       </button>
 
       {open && (
-        <div className="fixed inset-x-0 top-16 z-[60] border-b border-sky-400/20 bg-slate-950 text-slate-100 shadow-2xl shadow-sky-950/30 backdrop-blur">
+        <div className="fixed inset-x-0 top-16 z-[60] border-b border-slate-200 bg-white text-slate-900 shadow-xl shadow-slate-200/80 backdrop-blur">
           <div
-            className="fixed inset-0 top-16 -z-10 bg-black/35"
+            className="fixed inset-0 top-16 -z-10 bg-slate-950/20"
             onClick={() => setOpen(false)}
           />
           <div className="content-container py-5">
             <form onSubmit={submitSearch} className="flex items-center gap-3">
-              <MagnifyingGlass className="shrink-0 text-sky-300" />
+              <MagnifyingGlass className="shrink-0 text-sky-600" />
               <input
                 ref={inputRef}
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 type="search"
                 placeholder="Search products"
-                className="h-12 flex-1 border-0 bg-transparent text-xl text-white outline-none placeholder:text-slate-500"
+                className="h-12 flex-1 border-0 bg-transparent text-xl text-slate-950 outline-none placeholder:text-slate-400"
               />
               <button
                 type="button"
                 aria-label="Close search"
                 title="Close search"
                 onClick={() => setOpen(false)}
-                className="grid h-10 w-10 place-items-center rounded-md text-slate-300 transition hover:bg-slate-800 hover:text-white"
+                className="grid h-10 w-10 place-items-center rounded-md text-slate-500 transition hover:bg-slate-100 hover:text-slate-950"
               >
                 <XMark />
               </button>
@@ -81,21 +81,21 @@ export default function SearchPanel({ recommendedProducts }: SearchPanelProps) {
 
             <div className="mt-6 grid gap-6 small:grid-cols-[220px_1fr]">
               <div>
-                <p className="text-small-semi uppercase tracking-[0.14em] text-sky-300">
+                <p className="text-small-semi uppercase tracking-[0.14em] text-sky-600">
                   Quick links
                 </p>
-                <div className="mt-3 grid gap-2 text-sm text-slate-300">
+                <div className="mt-3 grid gap-2 text-sm text-slate-600">
                   <LocalizedClientLink
                     href="/store"
                     onClick={() => setOpen(false)}
-                    className="hover:text-white"
+                    className="hover:text-sky-600"
                   >
                     Shop all
                   </LocalizedClientLink>
                   <LocalizedClientLink
                     href="/about-us"
                     onClick={() => setOpen(false)}
-                    className="hover:text-white"
+                    className="hover:text-sky-600"
                   >
                     About us
                   </LocalizedClientLink>
@@ -103,7 +103,7 @@ export default function SearchPanel({ recommendedProducts }: SearchPanelProps) {
               </div>
 
               <div>
-                <p className="text-small-semi uppercase tracking-[0.14em] text-slate-400">
+                <p className="text-small-semi uppercase tracking-[0.14em] text-slate-500">
                   Recommended
                 </p>
                 <div className="mt-3 grid gap-3 small:grid-cols-2">
@@ -112,9 +112,9 @@ export default function SearchPanel({ recommendedProducts }: SearchPanelProps) {
                       key={product.id}
                       href={`/products/${product.handle}`}
                       onClick={() => setOpen(false)}
-                      className="grid grid-cols-[64px_1fr] items-center gap-3 rounded-md border border-slate-800 bg-slate-900/70 p-2 transition hover:border-sky-400/50 hover:bg-slate-900"
+                      className="grid grid-cols-[64px_1fr] items-center gap-3 rounded-md border border-slate-200 bg-slate-50 p-2 transition hover:border-sky-300 hover:bg-white"
                     >
-                      <div className="relative aspect-square overflow-hidden rounded bg-slate-800">
+                      <div className="relative aspect-square overflow-hidden rounded bg-slate-100">
                         {product.thumbnail && (
                           <Image
                             src={product.thumbnail}
@@ -126,7 +126,7 @@ export default function SearchPanel({ recommendedProducts }: SearchPanelProps) {
                         )}
                       </div>
                       <div className="min-w-0">
-                        <p className="truncate text-sm text-white">
+                        <p className="truncate text-sm text-slate-950">
                           {product.title}
                         </p>
                         <p className="text-xs text-slate-500">

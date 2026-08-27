@@ -43,16 +43,16 @@ export default async function CollectionsGrid({
     <section className="content-container py-14 small:py-20">
       <div className="mb-8 flex flex-col justify-between gap-4 small:flex-row small:items-end">
         <div>
-          <p className="text-small-semi uppercase tracking-[0.16em] text-sky-300">
+          <p className="text-small-semi uppercase tracking-[0.16em] text-sky-600">
             Collections
           </p>
-          <h2 className="mt-2 text-3xl-regular text-white">
+          <h2 className="mt-2 text-3xl-regular text-slate-950">
             Explore the latest edits
           </h2>
         </div>
         <LocalizedClientLink
           href="/store"
-          className="text-sm font-semibold text-sky-300 hover:text-sky-200"
+          className="text-sm font-semibold text-sky-700 hover:text-sky-500"
         >
           View all
         </LocalizedClientLink>
@@ -70,7 +70,7 @@ export default async function CollectionsGrid({
               key={collection.id}
               href={`/collections/${collection.handle}`}
               className={[
-                "group relative min-h-[280px] overflow-hidden border border-slate-800 bg-slate-900",
+                "group relative min-h-[280px] overflow-hidden border border-slate-200 bg-white shadow-sm",
                 index === 1 ? "small:row-span-2" : "",
               ].join(" ")}
             >
@@ -83,11 +83,11 @@ export default async function CollectionsGrid({
                   className="object-cover transition duration-500 group-hover:scale-[1.03]"
                 />
               ) : (
-                <div className="h-full w-full bg-[linear-gradient(135deg,#0f172a,#075985,#020617)]" />
+                <div className="h-full w-full bg-[linear-gradient(135deg,#f8fafc,#7dd3fc,#ffffff)]" />
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-6">
-                <p className="text-small-semi uppercase tracking-[0.16em] text-sky-300">
+                <p className="text-small-semi uppercase tracking-[0.16em] text-sky-200">
                   Collection
                 </p>
                 <h3 className="mt-2 text-2xl-regular text-white">

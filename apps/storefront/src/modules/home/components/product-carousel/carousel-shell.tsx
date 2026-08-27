@@ -29,10 +29,10 @@ export default function CarouselShell({
     <section className="content-container overflow-hidden py-14 small:py-20">
       <div className="mb-8 flex items-end justify-between gap-4">
         <div>
-          <p className="text-small-semi uppercase tracking-[0.16em] text-sky-300">
+          <p className="text-small-semi uppercase tracking-[0.16em] text-sky-600">
             Products
           </p>
-          <h2 className="mt-2 text-3xl-regular text-white">{title}</h2>
+          <h2 className="mt-2 text-3xl-regular text-slate-950">{title}</h2>
         </div>
         <div className="flex gap-2">
           <button
@@ -40,7 +40,7 @@ export default function CarouselShell({
             aria-label="Previous products"
             title="Previous products"
             onClick={() => scrollBy("left")}
-            className="grid h-10 w-10 place-items-center rounded-md border border-slate-700 text-slate-200 transition hover:border-sky-400 hover:text-sky-300"
+            className="grid h-10 w-10 place-items-center rounded-md border border-slate-300 bg-white text-slate-700 transition hover:border-sky-500 hover:text-sky-600"
           >
             <ArrowLeft />
           </button>
@@ -49,7 +49,7 @@ export default function CarouselShell({
             aria-label="Next products"
             title="Next products"
             onClick={() => scrollBy("right")}
-            className="grid h-10 w-10 place-items-center rounded-md border border-slate-700 text-slate-200 transition hover:border-sky-400 hover:text-sky-300"
+            className="grid h-10 w-10 place-items-center rounded-md border border-slate-300 bg-white text-slate-700 transition hover:border-sky-500 hover:text-sky-600"
           >
             <ArrowRight />
           </button>

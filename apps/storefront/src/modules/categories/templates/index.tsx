@@ -41,11 +41,11 @@ export default function CategoryTemplate({
 
   return (
     <div
-      className="flex flex-col small:flex-row small:items-start py-6 content-container"
+      className="content-container py-10"
       data-testid="category-container"
     >
       <div className="w-full">
-        <div className="relative mb-8 min-h-[150px] overflow-hidden border border-slate-800 bg-slate-900 p-5 small:min-h-[200px]">
+        <div className="relative mb-8 min-h-[150px] overflow-hidden border border-slate-200 bg-white p-5 shadow-sm small:min-h-[200px]">
           {categoryImage ? (
             <Image
               src={categoryImage}
@@ -56,12 +56,12 @@ export default function CategoryTemplate({
               priority
             />
           ) : (
-            <div className="absolute inset-0 bg-[linear-gradient(135deg,#0f172a,#075985,#020617)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(135deg,#f8fafc,#7dd3fc,#ffffff)]" />
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/10 to-transparent" />
           <div className="relative flex min-h-[110px] flex-col justify-end small:min-h-[160px]">
             {!!parents.length && (
-              <div className="mb-4 flex flex-wrap gap-2 text-sm text-slate-300">
+              <div className="mb-4 flex flex-wrap gap-2 text-sm text-slate-100">
                 {parents.map((parent) => (
                   <LocalizedClientLink
                     key={parent.id}
@@ -74,7 +74,7 @@ export default function CategoryTemplate({
                 ))}
               </div>
             )}
-            <p className="text-small-semi uppercase tracking-[0.16em] text-sky-300">
+            <p className="text-small-semi uppercase tracking-[0.16em] text-sky-200">
               Category
             </p>
             <h1
@@ -86,7 +86,7 @@ export default function CategoryTemplate({
           </div>
         </div>
         {category.description && (
-          <div className="mb-8 text-base-regular text-slate-300">
+          <div className="mb-8 text-base-regular text-slate-600">
             <p>{category.description}</p>
           </div>
         )}

@@ -218,7 +218,7 @@ function FreeShippingPopup({
         </Button>
       </div>
 
-      <div className="w-[400px] bg-black text-white p-6 rounded-lg ">
+      <div className="w-[400px] rounded-lg border border-slate-200 bg-white p-6 text-slate-900 shadow-xl shadow-slate-200/80 ">
         <div className="pb-4">
           <div className="space-y-3">
             <div className="flex justify-between text-[15px] text-neutral-400">
@@ -239,7 +239,7 @@ function FreeShippingPopup({
                 })}
               >
                 Only{" "}
-                <span className="text-white">
+                <span className="text-slate-900">
                   {convertToLocale({
                     amount: price.target_remaining,
                     currency_code: cart.currency_code,

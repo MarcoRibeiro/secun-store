@@ -39,10 +39,10 @@ export default async function SearchResultsPage(props: {
   return (
     <main className="content-container min-h-[60vh] py-12">
       <div className="mb-8">
-        <p className="text-small-semi uppercase tracking-[0.16em] text-sky-300">
+        <p className="text-small-semi uppercase tracking-[0.16em] text-sky-600">
           Search
         </p>
-        <h1 className="mt-2 text-3xl-regular text-white">
+        <h1 className="mt-2 text-3xl-regular text-slate-950">
           Results for "{decodedQuery}"
         </h1>
       </div>
@@ -59,7 +59,7 @@ export default async function SearchResultsPage(props: {
           ))}
         </ul>
       ) : (
-        <div className="border border-slate-800 bg-slate-950 p-8 text-slate-300">
+        <div className="border border-slate-200 bg-white p-8 text-slate-600 shadow-sm">
           No products found. Try a different search.
         </div>
       )}
