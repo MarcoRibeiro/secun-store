@@ -7,19 +7,19 @@ const Hero = ({ product }: { product?: HttpTypes.StoreProduct }) => {
   const heroImage = product?.thumbnail || product?.images?.[0]?.url
 
   return (
-    <section className="relative min-h-[74vh] overflow-hidden border-b border-slate-200 bg-slate-50">
+    <section className="relative overflow-hidden border-b border-slate-200 bg-slate-50">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_22%,rgba(14,165,233,0.16),transparent_34%),linear-gradient(135deg,#ffffff_0%,#f8fafc_48%,#e0f2fe_100%)]" />
       <div className="absolute right-0 top-0 h-full w-1/2 bg-[linear-gradient(90deg,rgba(255,255,255,0),rgba(56,189,248,0.12))]" />
 
-      <div className="content-container relative grid min-h-[74vh] items-end pb-14 pt-28 small:grid-cols-[1.1fr_0.9fr] small:gap-12">
-        <div className="max-w-3xl">
+      <div className="content-container relative grid min-h-[520px] items-center gap-10 py-14 small:grid-cols-[1.1fr_0.9fr] small:py-16">
+        <div className="max-w-2xl">
           <p className="text-small-semi uppercase tracking-[0.18em] text-sky-600">
             Premium storefront
           </p>
-          <h1 className="mt-5 text-[44px] font-normal leading-[1.02] text-slate-950 small:text-[76px]">
+          <h1 className="mt-4 text-[38px] font-normal leading-[1.05] text-slate-950 small:text-[58px]">
             Redefine your setup with sharp, secure essentials.
           </h1>
-          <p className="mt-6 max-w-xl text-base-regular text-slate-600">
+          <p className="mt-5 max-w-xl text-base-regular text-slate-600">
             Explore a curated product selection with a darker, cleaner shopping
             experience inspired by modern editorial commerce.
           </p>
@@ -31,15 +31,15 @@ const Hero = ({ product }: { product?: HttpTypes.StoreProduct }) => {
           </LocalizedClientLink>
         </div>
 
-        <div className="mt-12 grid gap-4 small:mt-0">
-          <div className="relative aspect-[4/5] overflow-hidden border border-slate-200 bg-white shadow-xl shadow-slate-200/80">
+        <div className="grid justify-items-center gap-4 small:justify-items-end">
+          <div className="relative aspect-[4/5] w-full max-w-[300px] overflow-hidden border border-slate-200 bg-white shadow-xl shadow-slate-200/80 small:max-w-[360px]">
             {heroImage ? (
               <Image
                 src={heroImage}
                 alt={product?.title || "Featured product"}
                 fill
                 priority
-                sizes="(max-width: 1024px) 100vw, 40vw"
+                sizes="(max-width: 1024px) 300px, 360px"
                 className="object-cover"
               />
             ) : (
@@ -55,7 +55,7 @@ const Hero = ({ product }: { product?: HttpTypes.StoreProduct }) => {
               </p>
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid w-full max-w-[360px] grid-cols-2 gap-4">
             <div className="border border-slate-200 bg-white p-5 text-slate-600 shadow-sm">
               <p className="text-2xl-semi text-sky-600">01</p>
               <p className="mt-2 text-sm">Fast discovery</p>

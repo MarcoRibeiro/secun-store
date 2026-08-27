@@ -14,7 +14,7 @@ export default async function CollectionsGrid({
   collections,
   countryCode,
 }: CollectionsGridProps) {
-  const featuredCollections = collections.slice(0, 3)
+  const featuredCollections = collections.slice(0, 5)
 
   if (!featuredCollections.length) {
     return null
@@ -58,7 +58,7 @@ export default async function CollectionsGrid({
         </LocalizedClientLink>
       </div>
 
-      <div className="grid gap-3 small:grid-cols-2 small:grid-rows-2">
+      <div className="grid gap-3 small:grid-cols-2 large:grid-cols-5">
         {collectionsWithProducts.map(({ collection, product }, index) => {
           const image =
             getMetadataImage(collection) ||
@@ -70,8 +70,7 @@ export default async function CollectionsGrid({
               key={collection.id}
               href={`/collections/${collection.handle}`}
               className={[
-                "group relative min-h-[280px] overflow-hidden border border-slate-200 bg-white shadow-sm",
-                index === 1 ? "small:row-span-2" : "",
+                "group relative min-h-[240px] overflow-hidden border border-slate-200 bg-white shadow-sm",
               ].join(" ")}
             >
               {image ? (
