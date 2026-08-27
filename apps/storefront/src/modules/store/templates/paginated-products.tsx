@@ -19,6 +19,7 @@ export default async function PaginatedProducts({
   page,
   collectionId,
   categoryId,
+  selectedCategoryId,
   productsIds,
   countryCode,
 }: {
@@ -26,6 +27,7 @@ export default async function PaginatedProducts({
   page: number
   collectionId?: string
   categoryId?: string
+  selectedCategoryId?: string
   productsIds?: string[]
   countryCode: string
 }) {
@@ -37,8 +39,10 @@ export default async function PaginatedProducts({
     queryParams["collection_id"] = [collectionId]
   }
 
-  if (categoryId) {
-    queryParams["category_id"] = [categoryId]
+  const activeCategoryId = selectedCategoryId || categoryId
+
+  if (activeCategoryId) {
+    queryParams["category_id"] = [activeCategoryId]
   }
 
   if (productsIds) {
@@ -69,12 +73,12 @@ export default async function PaginatedProducts({
   return (
     <>
       <ul
-        className="grid grid-cols-2 w-full small:grid-cols-3 medium:grid-cols-4 gap-x-6 gap-y-8"
+        className="mx-auto grid w-full max-w-[1040px] grid-cols-[repeat(auto-fill,minmax(170px,240px))] justify-start gap-x-5 gap-y-9"
         data-testid="products-list"
       >
         {products.map((p) => {
           return (
-            <li key={p.id}>
+            <li key={p.id} className="w-full">
               <ProductPreview product={p} region={region} />
             </li>
           )

@@ -5,7 +5,7 @@ import Image from "next/image"
 import { getMetadataImage } from "@lib/util/metadata-image"
 import InteractiveLink from "@modules/common/components/interactive-link"
 import SkeletonProductGrid from "@modules/skeletons/templates/skeleton-product-grid"
-import RefinementList from "@modules/store/components/refinement-list"
+import ProductListingControls from "@modules/store/components/product-listing-controls"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 import PaginatedProducts from "@modules/store/templates/paginated-products"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
@@ -44,7 +44,6 @@ export default function CategoryTemplate({
       className="flex flex-col small:flex-row small:items-start py-6 content-container"
       data-testid="category-container"
     >
-      <RefinementList sortBy={sort} data-testid="sort-by-container" />
       <div className="w-full">
         <div className="relative mb-8 min-h-[260px] overflow-hidden border border-slate-800 bg-slate-900 p-8 small:min-h-[360px]">
           {categoryImage ? (
@@ -104,6 +103,10 @@ export default function CategoryTemplate({
             </ul>
           </div>
         )}
+        <ProductListingControls
+          sortBy={sort}
+          showCategoryFilter={false}
+        />
         <Suspense
           fallback={
             <SkeletonProductGrid
