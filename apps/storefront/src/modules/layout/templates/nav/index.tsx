@@ -2,32 +2,21 @@ import { Suspense } from "react"
 
 import { listCategories } from "@lib/data/categories"
 import { listCollections } from "@lib/data/collections"
-import { listLocales } from "@lib/data/locales"
-import { getLocale } from "@lib/data/locale-actions"
 import { listProducts } from "@lib/data/products"
-import { listRegions } from "@lib/data/regions"
-import { StoreRegion } from "@medusajs/types"
 import { User } from "@medusajs/icons"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import BrandLogo from "@modules/layout/components/brand-logo"
 import CartButton from "@modules/layout/components/cart-button"
-import SideMenu from "@modules/layout/components/side-menu"
 import SearchPanel from "@modules/search/components/search-panel"
 
 export default async function Nav({ countryCode }: { countryCode: string }) {
   const [
-    regions,
-    locales,
-    currentLocale,
     productCategories,
     { collections },
     {
       response: { products },
     },
   ] = await Promise.all([
-    listRegions().then((regions: StoreRegion[]) => regions),
-    listLocales(),
-    getLocale(),
     listCategories(),
     listCollections({
       fields: "id, handle, title",
@@ -50,14 +39,7 @@ export default async function Nav({ countryCode }: { countryCode: string }) {
       <header className="relative h-16 border-b border-sky-400/20 bg-slate-950/95 text-slate-200 backdrop-blur">
         <nav className="content-container flex h-full w-full items-center justify-between text-small-regular">
           <div className="flex h-full flex-1 basis-0 items-center">
-            <div className="h-full">
-              <SideMenu
-                regions={regions}
-                locales={locales}
-                currentLocale={currentLocale}
-              />
-            </div>
-            <div className="ml-8 hidden h-full items-center gap-x-2 small:flex">
+            <div className="hidden h-full items-center gap-x-2 small:flex">
               <div className="group/shop relative flex h-full items-center">
                 <LocalizedClientLink
                   href="/store"
