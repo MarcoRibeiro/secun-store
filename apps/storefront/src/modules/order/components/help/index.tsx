@@ -1,24 +1,33 @@
 import { Heading } from "@modules/common/components/ui"
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import { getStorefrontContent } from "@lib/content/storefront"
 import React from "react"
 
 const Help = () => {
+  const content = getStorefrontContent()
+
   return (
-    <div className="mt-6">
-      <Heading className="text-base-semi">Need help?</Heading>
-      <div className="text-base-regular my-2">
-        <ul className="gap-y-2 flex flex-col">
+    <section className="border-t border-slate-200 bg-slate-50 p-6 small:p-10">
+      <Heading className="text-base-semi">Precisas de ajuda?</Heading>
+      <div className="my-3 text-base-regular text-slate-600">
+        <ul className="flex flex-col gap-y-2">
           <li>
-            <LocalizedClientLink href="/contact">Contact</LocalizedClientLink>
+            <a href={content.footer.phoneUrl} className="hover:text-sky-600">
+              {content.footer.phone}
+            </a>
           </li>
           <li>
-            <LocalizedClientLink href="/contact">
-              Returns & Exchanges
-            </LocalizedClientLink>
+            <a
+              href={content.footer.instagramUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-sky-600"
+            >
+              Instagram
+            </a>
           </li>
         </ul>
       </div>
-    </div>
+    </section>
   )
 }
 

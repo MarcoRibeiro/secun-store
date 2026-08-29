@@ -13,9 +13,9 @@ type ItemProps = {
 
 const Item = ({ item, currencyCode }: ItemProps) => {
   return (
-    <Table.Row className="w-full" data-testid="product-row">
-      <Table.Cell className="!pl-0 p-4 w-24">
-        <div className="flex w-16">
+    <Table.Row className="w-full bg-white" data-testid="product-row">
+      <Table.Cell className="w-28 !pl-4 p-4">
+        <div className="flex w-20">
           <Thumbnail thumbnail={item.thumbnail} size="square" />
         </div>
       </Table.Cell>
