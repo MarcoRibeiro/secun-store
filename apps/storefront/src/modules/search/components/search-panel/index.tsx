@@ -6,6 +6,7 @@ import { useParams, useRouter } from "next/navigation"
 import { MagnifyingGlass, XMark } from "@medusajs/icons"
 import { HttpTypes } from "@medusajs/types"
 
+import { getStorefrontContent } from "@lib/content/storefront"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 type SearchPanelProps = {
@@ -13,6 +14,7 @@ type SearchPanelProps = {
 }
 
 export default function SearchPanel({ recommendedProducts }: SearchPanelProps) {
+  const content = getStorefrontContent()
   const [open, setOpen] = useState(false)
   const [query, setQuery] = useState("")
   const inputRef = useRef<HTMLInputElement>(null)
@@ -42,8 +44,8 @@ export default function SearchPanel({ recommendedProducts }: SearchPanelProps) {
     <div>
       <button
         type="button"
-        aria-label="Search"
-        title="Search"
+        aria-label={content.nav.search}
+        title={content.nav.search}
         onClick={() => setOpen(true)}
         className="grid h-10 w-10 place-items-center rounded-md text-slate-700 transition hover:bg-sky-50 hover:text-sky-600"
         data-testid="search-button"
@@ -65,13 +67,13 @@ export default function SearchPanel({ recommendedProducts }: SearchPanelProps) {
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 type="search"
-                placeholder="Search products"
+                placeholder={content.search.placeholder}
                 className="h-12 flex-1 border-0 bg-transparent text-xl text-slate-950 outline-none placeholder:text-slate-400"
               />
               <button
                 type="button"
-                aria-label="Close search"
-                title="Close search"
+                aria-label="Fechar pesquisa"
+                title="Fechar pesquisa"
                 onClick={() => setOpen(false)}
                 className="grid h-10 w-10 place-items-center rounded-md text-slate-500 transition hover:bg-slate-100 hover:text-slate-950"
               >
@@ -82,7 +84,7 @@ export default function SearchPanel({ recommendedProducts }: SearchPanelProps) {
             <div className="mt-6 grid gap-6 small:grid-cols-[220px_1fr]">
               <div>
                 <p className="text-small-semi uppercase tracking-[0.14em] text-sky-600">
-                  Quick links
+                  {content.search.quickLinks}
                 </p>
                 <div className="mt-3 grid gap-2 text-sm text-slate-600">
                   <LocalizedClientLink
@@ -90,21 +92,21 @@ export default function SearchPanel({ recommendedProducts }: SearchPanelProps) {
                     onClick={() => setOpen(false)}
                     className="hover:text-sky-600"
                   >
-                    Shop all
+                    {content.search.shopAll}
                   </LocalizedClientLink>
                   <LocalizedClientLink
                     href="/about-us"
                     onClick={() => setOpen(false)}
                     className="hover:text-sky-600"
                   >
-                    About us
+                    {content.search.about}
                   </LocalizedClientLink>
                 </div>
               </div>
 
               <div>
                 <p className="text-small-semi uppercase tracking-[0.14em] text-slate-500">
-                  Recommended
+                  {content.search.recommended}
                 </p>
                 <div className="mt-3 grid gap-3 small:grid-cols-2">
                   {recommendedProducts.slice(0, 4).map((product) => (
@@ -130,7 +132,7 @@ export default function SearchPanel({ recommendedProducts }: SearchPanelProps) {
                           {product.title}
                         </p>
                         <p className="text-xs text-slate-500">
-                          View product
+                          {content.search.viewProduct}
                         </p>
                       </div>
                     </LocalizedClientLink>

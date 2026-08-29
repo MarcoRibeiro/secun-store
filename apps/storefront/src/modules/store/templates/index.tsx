@@ -1,5 +1,6 @@
 import { Suspense } from "react"
 
+import { getStorefrontContent } from "@lib/content/storefront"
 import { listCategories } from "@lib/data/categories"
 import SkeletonProductGrid from "@modules/skeletons/templates/skeleton-product-grid"
 import ProductListingControls from "@modules/store/components/product-listing-controls"
@@ -18,6 +19,7 @@ const StoreTemplate = ({
   categoryId?: string
   countryCode: string
 }) => {
+  const content = getStorefrontContent()
   const pageNumber = page ? parseInt(page) : 1
   const sort = sortBy || "created_at"
 
@@ -31,13 +33,13 @@ const StoreTemplate = ({
       <div className="w-full">
         <div className="mx-auto mb-8 max-w-[1040px]">
           <p className="text-small-semi uppercase tracking-[0.16em] text-sky-600">
-            Shop
+            {content.listing.shopEyebrow}
           </p>
           <h1
             className="mt-2 text-3xl-regular text-slate-950"
             data-testid="store-page-title"
           >
-            All products
+            {content.listing.allProducts}
           </h1>
         </div>
         <Suspense>

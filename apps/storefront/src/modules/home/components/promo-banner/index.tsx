@@ -1,8 +1,11 @@
 import { ArrowRight } from "@medusajs/icons"
 
+import { getStorefrontContent } from "@lib/content/storefront"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 export default function PromoBanner() {
+  const content = getStorefrontContent()
+
   return (
     <section className="content-container py-8">
       <div className="relative overflow-hidden border border-slate-200 bg-white px-6 py-14 shadow-sm small:px-12">
@@ -10,17 +13,17 @@ export default function PromoBanner() {
         <div className="relative flex flex-col justify-between gap-8 small:flex-row small:items-center">
           <div>
             <p className="text-small-semi uppercase tracking-[0.16em] text-sky-600">
-              New drop
+              {content.home.promoEyebrow}
             </p>
             <h2 className="mt-3 max-w-2xl text-3xl-regular text-slate-950">
-              Refined essentials with a sharper visual edge.
+              {content.home.promoTitle}
             </h2>
           </div>
           <LocalizedClientLink
             href="/store"
             className="inline-flex w-max items-center gap-2 rounded-md border border-sky-500 px-5 py-3 text-sm font-semibold text-sky-700 transition hover:bg-sky-500 hover:text-white"
           >
-            Shop the edit <ArrowRight />
+            {content.home.promoCta} <ArrowRight />
           </LocalizedClientLink>
         </div>
       </div>

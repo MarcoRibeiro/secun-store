@@ -2,6 +2,7 @@ import { notFound } from "next/navigation"
 import { Suspense } from "react"
 import Image from "next/image"
 
+import { getStorefrontContent } from "@lib/content/storefront"
 import { getMetadataImage } from "@lib/util/metadata-image"
 import InteractiveLink from "@modules/common/components/interactive-link"
 import SkeletonProductGrid from "@modules/skeletons/templates/skeleton-product-grid"
@@ -22,6 +23,7 @@ export default function CategoryTemplate({
   page?: string
   countryCode: string
 }) {
+  const content = getStorefrontContent()
   const pageNumber = page ? parseInt(page) : 1
   const sort = sortBy || "created_at"
 
@@ -75,7 +77,7 @@ export default function CategoryTemplate({
               </div>
             )}
             <p className="text-small-semi uppercase tracking-[0.16em] text-sky-200">
-              Category
+              {content.listing.categoryLabel}
             </p>
             <h1
               className="mt-2 text-3xl-regular text-white"

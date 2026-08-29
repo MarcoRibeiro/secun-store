@@ -61,7 +61,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
   const metadata = {
     title: `${collection.title} | Secunstore`,
-    description: `${collection.title} collection`,
+    description: `Produtos e equipamentos da coleção ${collection.title}.`,
   } as Metadata
 
   return metadata

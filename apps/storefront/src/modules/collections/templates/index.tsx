@@ -1,6 +1,7 @@
 import { Suspense } from "react"
 import Image from "next/image"
 
+import { getStorefrontContent } from "@lib/content/storefront"
 import { listCategories } from "@lib/data/categories"
 import { getMetadataImage } from "@lib/util/metadata-image"
 import SkeletonProductGrid from "@modules/skeletons/templates/skeleton-product-grid"
@@ -22,6 +23,7 @@ export default function CollectionTemplate({
   selectedCategoryId?: string
   countryCode: string
 }) {
+  const content = getStorefrontContent()
   const pageNumber = page ? parseInt(page) : 1
   const sort = sortBy || "created_at"
   const collectionImage = getMetadataImage(collection)
@@ -47,7 +49,7 @@ export default function CollectionTemplate({
           <div className="relative flex min-h-[110px] items-end small:min-h-[160px]">
             <div>
               <p className="text-small-semi uppercase tracking-[0.16em] text-sky-200">
-                Collection
+                {content.listing.collectionLabel}
               </p>
               <h1 className="mt-2 text-3xl-regular text-white">
                 {collection.title}

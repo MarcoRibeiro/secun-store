@@ -1,9 +1,11 @@
+import { getStorefrontContent } from "@lib/content/storefront"
 import { ArrowRight } from "@medusajs/icons"
 import { HttpTypes } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Image from "next/image"
 
 const Hero = ({ product }: { product?: HttpTypes.StoreProduct }) => {
+  const content = getStorefrontContent()
   const heroImage = product?.thumbnail || product?.images?.[0]?.url
 
   return (
@@ -14,20 +16,19 @@ const Hero = ({ product }: { product?: HttpTypes.StoreProduct }) => {
       <div className="content-container relative grid min-h-[520px] items-center gap-10 py-14 small:grid-cols-[1.1fr_0.9fr] small:py-16">
         <div className="max-w-2xl">
           <p className="text-small-semi uppercase tracking-[0.18em] text-sky-600">
-            Premium storefront
+            {content.home.heroEyebrow}
           </p>
           <h1 className="mt-4 text-[38px] font-normal leading-[1.05] text-slate-950 small:text-[58px]">
-            Redefine your setup with sharp, secure essentials.
+            {content.home.heroTitle}
           </h1>
           <p className="mt-5 max-w-xl text-base-regular text-slate-600">
-            Explore a curated product selection with a darker, cleaner shopping
-            experience inspired by modern editorial commerce.
+            {content.home.heroText}
           </p>
           <LocalizedClientLink
             href="/store"
             className="mt-8 inline-flex items-center gap-2 rounded-md bg-sky-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-sky-500"
           >
-            Explore now <ArrowRight />
+            {content.home.heroCta} <ArrowRight />
           </LocalizedClientLink>
         </div>
 
@@ -36,7 +37,7 @@ const Hero = ({ product }: { product?: HttpTypes.StoreProduct }) => {
             {heroImage ? (
               <Image
                 src={heroImage}
-                alt={product?.title || "Featured product"}
+                alt={product?.title || content.home.featuredFallback}
                 fill
                 priority
                 sizes="(max-width: 1024px) 300px, 360px"
@@ -48,21 +49,21 @@ const Hero = ({ product }: { product?: HttpTypes.StoreProduct }) => {
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-5">
               <p className="text-small-semi uppercase tracking-[0.16em] text-sky-200">
-                Featured
+                {content.home.featuredEyebrow}
               </p>
               <p className="mt-2 text-2xl-regular text-white">
-                {product?.title || "Black base, electric blue accents"}
+                {product?.title || content.home.featuredFallback}
               </p>
             </div>
           </div>
           <div className="grid w-full max-w-[360px] grid-cols-2 gap-4">
             <div className="border border-slate-200 bg-white p-5 text-slate-600 shadow-sm">
               <p className="text-2xl-semi text-sky-600">01</p>
-              <p className="mt-2 text-sm">Fast discovery</p>
+              <p className="mt-2 text-sm">{content.home.statOne}</p>
             </div>
             <div className="border border-slate-200 bg-white p-5 text-slate-600 shadow-sm">
               <p className="text-2xl-semi text-sky-600">02</p>
-              <p className="mt-2 text-sm">Clean checkout path</p>
+              <p className="mt-2 text-sm">{content.home.statTwo}</p>
             </div>
           </div>
         </div>

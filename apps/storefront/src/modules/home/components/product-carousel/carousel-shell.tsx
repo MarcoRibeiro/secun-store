@@ -2,6 +2,7 @@
 
 import { ReactNode, useRef } from "react"
 import { ArrowLeft, ArrowRight } from "@medusajs/icons"
+import { getStorefrontContent } from "@lib/content/storefront"
 
 export default function CarouselShell({
   title,
@@ -10,6 +11,7 @@ export default function CarouselShell({
   title: string
   children: ReactNode
 }) {
+  const content = getStorefrontContent()
   const scrollerRef = useRef<HTMLDivElement>(null)
 
   const scrollBy = (direction: "left" | "right") => {
@@ -30,15 +32,15 @@ export default function CarouselShell({
       <div className="mb-8 flex items-end justify-between gap-4">
         <div>
           <p className="text-small-semi uppercase tracking-[0.16em] text-sky-600">
-            Products
+            {content.home.productsEyebrow}
           </p>
           <h2 className="mt-2 text-3xl-regular text-slate-950">{title}</h2>
         </div>
         <div className="flex gap-2">
           <button
             type="button"
-            aria-label="Previous products"
-            title="Previous products"
+            aria-label="Produtos anteriores"
+            title="Produtos anteriores"
             onClick={() => scrollBy("left")}
             className="grid h-10 w-10 place-items-center rounded-md border border-slate-300 bg-white text-slate-700 transition hover:border-sky-500 hover:text-sky-600"
           >
@@ -46,8 +48,8 @@ export default function CarouselShell({
           </button>
           <button
             type="button"
-            aria-label="Next products"
-            title="Next products"
+            aria-label="Próximos produtos"
+            title="Próximos produtos"
             onClick={() => scrollBy("right")}
             className="grid h-10 w-10 place-items-center rounded-md border border-slate-300 bg-white text-slate-700 transition hover:border-sky-500 hover:text-sky-600"
           >

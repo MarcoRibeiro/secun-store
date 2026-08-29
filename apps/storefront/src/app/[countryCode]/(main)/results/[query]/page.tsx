@@ -1,18 +1,20 @@
 import { Metadata } from "next"
 
+import { getStorefrontContent } from "@lib/content/storefront"
 import { listProducts } from "@lib/data/products"
 import { getRegion } from "@lib/data/regions"
 import ProductPreview from "@modules/products/components/product-preview"
 
 export const metadata: Metadata = {
-  title: "Search results",
-  description: "Search products.",
+  title: "Resultados de pesquisa",
+  description: "Pesquisa produtos e equipamentos.",
 }
 
 export default async function SearchResultsPage(props: {
   params: Promise<{ countryCode: string; query: string }>
 }) {
   const { countryCode, query } = await props.params
+  const content = getStorefrontContent()
   const decodedQuery = decodeURIComponent(query)
   const region = await getRegion(countryCode)
 
@@ -40,10 +42,10 @@ export default async function SearchResultsPage(props: {
     <main className="content-container min-h-[60vh] py-12">
       <div className="mb-8">
         <p className="text-small-semi uppercase tracking-[0.16em] text-sky-600">
-          Search
+          {content.search.title}
         </p>
         <h1 className="mt-2 text-3xl-regular text-slate-950">
-          Results for "{decodedQuery}"
+          {content.search.resultsTitle} "{decodedQuery}"
         </h1>
       </div>
 
@@ -60,7 +62,7 @@ export default async function SearchResultsPage(props: {
         </ul>
       ) : (
         <div className="border border-slate-200 bg-white p-8 text-slate-600 shadow-sm">
-          No products found. Try a different search.
+          {content.search.empty}
         </div>
       )}
     </main>

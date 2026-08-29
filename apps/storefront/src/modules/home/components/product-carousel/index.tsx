@@ -1,4 +1,5 @@
 import { HttpTypes } from "@medusajs/types"
+import { getStorefrontContent } from "@lib/content/storefront"
 import ProductPreview from "@modules/products/components/product-preview"
 
 import CarouselShell from "./carousel-shell"
@@ -12,14 +13,16 @@ type ProductCarouselProps = {
 export default function ProductCarousel({
   products,
   region,
-  title = "Featured products",
+  title,
 }: ProductCarouselProps) {
+  const content = getStorefrontContent()
+
   if (!products.length) {
     return null
   }
 
   return (
-    <CarouselShell title={title}>
+    <CarouselShell title={title || content.home.productsTitle}>
       {products.map((product) => (
         <div
           key={product.id}

@@ -6,6 +6,7 @@ import {
   PopoverPanel,
   Transition,
 } from "@headlessui/react"
+import { getStorefrontContent } from "@lib/content/storefront"
 import { convertToLocale } from "@lib/util/money"
 import { ShoppingBag } from "@medusajs/icons"
 import { HttpTypes } from "@medusajs/types"
@@ -23,6 +24,7 @@ const CartDropdown = ({
 }: {
   cart?: HttpTypes.StoreCart | null
 }) => {
+  const content = getStorefrontContent()
   const [activeTimer, setActiveTimer] = useState<NodeJS.Timer | undefined>(
     undefined
   )
@@ -85,8 +87,8 @@ const CartDropdown = ({
           <LocalizedClientLink
             className="relative grid h-10 w-10 place-items-center rounded-md text-slate-700 transition hover:bg-sky-50 hover:text-sky-600"
             href="/cart"
-            aria-label="Bag"
-            title="Bag"
+            aria-label={content.nav.bag}
+            title={content.nav.bag}
             data-testid="nav-cart-link"
           >
             <ShoppingBag />
@@ -111,7 +113,7 @@ const CartDropdown = ({
             data-testid="nav-cart-dropdown"
           >
             <div className="p-4 flex items-center justify-center">
-              <h3 className="text-large-semi">Bag</h3>
+              <h3 className="text-large-semi">{content.nav.bag}</h3>
             </div>
             {cartState && cartState.items?.length ? (
               <>
@@ -159,7 +161,7 @@ const CartDropdown = ({
                                   data-testid="cart-item-quantity"
                                   data-value={item.quantity}
                                 >
-                                  Quantity: {item.quantity}
+                                  Quantidade: {item.quantity}
                                 </span>
                               </div>
                               <div className="flex justify-end">
@@ -176,7 +178,7 @@ const CartDropdown = ({
                             className="mt-1"
                             data-testid="cart-item-remove-button"
                           >
-                            Remove
+                            Remover
                           </DeleteButton>
                         </div>
                       </div>
@@ -186,7 +188,7 @@ const CartDropdown = ({
                   <div className="flex items-center justify-between">
                     <span className="font-semibold text-slate-900">
                       Subtotal{" "}
-                      <span className="font-normal">(excl. taxes)</span>
+                      <span className="font-normal">(sem impostos)</span>
                     </span>
                     <span
                       className="text-large-semi"
@@ -205,7 +207,7 @@ const CartDropdown = ({
                       size="large"
                       data-testid="go-to-cart-button"
                     >
-                      Go to cart
+                      Ver carrinho
                     </Button>
                   </LocalizedClientLink>
                 </div>
@@ -216,12 +218,12 @@ const CartDropdown = ({
                   <div className="text-small-regular flex h-6 w-6 items-center justify-center rounded-full bg-sky-500 text-white">
                     <span>0</span>
                   </div>
-                  <span>Your shopping bag is empty.</span>
+                  <span>O teu carrinho está vazio.</span>
                   <div>
                     <LocalizedClientLink href="/store">
                       <>
-                        <span className="sr-only">Go to all products page</span>
-                        <Button onClick={close}>Explore products</Button>
+                        <span className="sr-only">Ir para todos os produtos</span>
+                        <Button onClick={close}>Ver produtos</Button>
                       </>
                     </LocalizedClientLink>
                   </div>

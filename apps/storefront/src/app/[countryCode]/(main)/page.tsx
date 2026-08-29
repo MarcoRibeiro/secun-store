@@ -1,5 +1,6 @@
 import { Metadata } from "next"
 
+import { getStorefrontContent } from "@lib/content/storefront"
 import CollectionsGrid from "@modules/home/components/collections-grid"
 import Hero from "@modules/home/components/hero"
 import ProductCarousel from "@modules/home/components/product-carousel"
@@ -10,7 +11,8 @@ import { getRegion } from "@lib/data/regions"
 
 export const metadata: Metadata = {
   title: "Secunstore",
-  description: "A darker premium storefront powered by Medusa.",
+  description:
+    "Reparação de computadores, smartphones e venda de artigos em segunda mão.",
 }
 
 export default async function Home(props: {
@@ -19,6 +21,7 @@ export default async function Home(props: {
   const params = await props.params
 
   const { countryCode } = params
+  const content = getStorefrontContent()
 
   const region = await getRegion(countryCode)
 
@@ -51,7 +54,7 @@ export default async function Home(props: {
       <ProductCarousel
         products={products}
         region={region}
-        title="Selected products"
+        title={content.home.productsTitle}
       />
     </>
   )

@@ -1,4 +1,5 @@
 import { listProducts } from "@lib/data/products"
+import { getStorefrontContent } from "@lib/content/storefront"
 import { HttpTypes } from "@medusajs/types"
 import { Text } from "@modules/common/components/ui"
 
@@ -12,6 +13,7 @@ export default async function ProductRail({
   collection: HttpTypes.StoreCollection
   region: HttpTypes.StoreRegion
 }) {
+  const content = getStorefrontContent()
   const {
     response: { products: pricedProducts },
   } = await listProducts({
@@ -31,7 +33,7 @@ export default async function ProductRail({
       <div className="flex justify-between mb-8">
         <Text className="txt-xlarge text-slate-950">{collection.title}</Text>
         <InteractiveLink href={`/collections/${collection.handle}`}>
-          View all
+          {content.home.collectionsCta}
         </InteractiveLink>
       </div>
       <ul className="grid grid-cols-2 small:grid-cols-3 gap-x-6 gap-y-24 small:gap-y-36">

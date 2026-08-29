@@ -9,8 +9,8 @@ import { listRegions } from "@lib/data/regions"
 import { retrieveCustomer } from "@lib/data/customer"
 
 export const metadata: Metadata = {
-  title: "Profile",
-  description: "View and edit your Secunstore profile.",
+  title: "Perfil",
+  description: "Consulta e edita o teu perfil Secunstore.",
 }
 
 export default async function Profile() {

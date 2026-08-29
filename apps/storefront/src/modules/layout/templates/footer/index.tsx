@@ -1,11 +1,13 @@
 import { listCategories } from "@lib/data/categories"
 import { listCollections } from "@lib/data/collections"
+import { getStorefrontContent } from "@lib/content/storefront"
 import { Text } from "@modules/common/components/ui"
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import BrandLogo from "@modules/layout/components/brand-logo"
 
 export default async function Footer() {
+  const content = getStorefrontContent()
   const { collections } = await listCollections({
     fields: "*products",
   })
@@ -26,14 +28,16 @@ export default async function Footer() {
               <BrandLogo className="h-12 w-auto" />
             </LocalizedClientLink>
             <p className="mt-4 text-sm text-slate-500">
-              Secure shopping with a clean, product-first storefront experience.
+              {content.footer.description}
             </p>
           </div>
 
           <div className="text-small-regular grid grid-cols-2 gap-10 md:gap-x-16 small:grid-cols-3">
             {!!topCategories?.length && (
               <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus text-slate-950">Categories</span>
+                <span className="txt-small-plus text-slate-950">
+                  {content.footer.categories}
+                </span>
                 <ul
                   className="grid grid-cols-1 gap-2 text-slate-600"
                   data-testid="footer-categories"
@@ -55,7 +59,9 @@ export default async function Footer() {
 
             {!!collections?.length && (
               <div className="flex flex-col gap-y-2">
-                <span className="txt-small-plus text-slate-950">Collections</span>
+                <span className="txt-small-plus text-slate-950">
+                  {content.footer.collections}
+                </span>
                 <ul className="grid grid-cols-1 gap-2 text-slate-600">
                   {collections.slice(0, 6).map((collection) => (
                     <li key={collection.id}>
@@ -72,14 +78,16 @@ export default async function Footer() {
             )}
 
             <div className="flex flex-col gap-y-2">
-              <span className="txt-small-plus text-slate-950">Company</span>
+              <span className="txt-small-plus text-slate-950">
+                {content.footer.company}
+              </span>
               <ul className="grid grid-cols-1 gap-y-2 text-slate-600">
                 <li>
                   <LocalizedClientLink
                     href="/about-us"
                     className="hover:text-sky-600"
                   >
-                    About us
+                    {content.footer.about}
                   </LocalizedClientLink>
                 </li>
                 <li>
@@ -87,7 +95,7 @@ export default async function Footer() {
                     href="/store"
                     className="hover:text-sky-600"
                   >
-                    Shop
+                    {content.footer.shop}
                   </LocalizedClientLink>
                 </li>
                 <li>
@@ -95,7 +103,7 @@ export default async function Footer() {
                     href="/cart"
                     className="hover:text-sky-600"
                   >
-                    Bag
+                    {content.footer.bag}
                   </LocalizedClientLink>
                 </li>
               </ul>
@@ -105,7 +113,7 @@ export default async function Footer() {
 
         <div className="mb-12 flex w-full justify-between text-slate-500">
           <Text className="txt-compact-small">
-            © {new Date().getFullYear()} Secunstore. All rights reserved.
+            © {new Date().getFullYear()} Secunstore. {content.footer.rights}
           </Text>
         </div>
       </div>

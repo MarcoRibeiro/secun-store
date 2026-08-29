@@ -1,5 +1,6 @@
 import Image from "next/image"
 
+import { getStorefrontContent } from "@lib/content/storefront"
 import { listProducts } from "@lib/data/products"
 import { getMetadataImage } from "@lib/util/metadata-image"
 import { HttpTypes } from "@medusajs/types"
@@ -14,6 +15,7 @@ export default async function CollectionsGrid({
   collections,
   countryCode,
 }: CollectionsGridProps) {
+  const content = getStorefrontContent()
   const featuredCollections = collections.slice(0, 5)
 
   if (!featuredCollections.length) {
@@ -44,17 +46,17 @@ export default async function CollectionsGrid({
       <div className="mb-8 flex flex-col justify-between gap-4 small:flex-row small:items-end">
         <div>
           <p className="text-small-semi uppercase tracking-[0.16em] text-sky-600">
-            Collections
+            {content.home.collectionsEyebrow}
           </p>
           <h2 className="mt-2 text-3xl-regular text-slate-950">
-            Explore the latest edits
+            {content.home.collectionsTitle}
           </h2>
         </div>
         <LocalizedClientLink
           href="/store"
           className="text-sm font-semibold text-sky-700 hover:text-sky-500"
         >
-          View all
+          {content.home.collectionsCta}
         </LocalizedClientLink>
       </div>
 
@@ -87,13 +89,13 @@ export default async function CollectionsGrid({
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-6">
                 <p className="text-small-semi uppercase tracking-[0.16em] text-sky-200">
-                  Collection
+                  {content.home.collectionLabel}
                 </p>
                 <h3 className="mt-2 text-2xl-regular text-white">
                   {collection.title}
                 </h3>
                 <p className="mt-3 max-w-sm text-sm text-slate-300 opacity-0 transition duration-300 group-hover:opacity-100">
-                  Discover selected products from this collection.
+                  {content.home.collectionDescription}
                 </p>
               </div>
             </LocalizedClientLink>
