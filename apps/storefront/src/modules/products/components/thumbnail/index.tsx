@@ -26,7 +26,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
   return (
     <Container
       className={clx(
-        "relative w-full overflow-hidden border border-slate-200 bg-white p-4 shadow-elevation-card-rest transition duration-150 ease-in-out group-hover:border-sky-300 group-hover:shadow-elevation-card-hover",
+        "relative w-full overflow-hidden border border-slate-200 bg-slate-50 shadow-elevation-card-rest transition duration-150 ease-in-out group-hover:border-sky-300 group-hover:shadow-elevation-card-hover",
         className,
         {
           "aspect-[11/14]": isFeatured,
@@ -49,16 +49,20 @@ const ImageOrPlaceholder = ({
   image,
   size,
 }: Pick<ThumbnailProps, "size"> & { image?: string }) => {
+  const insetClass = size === "small" ? "inset-3" : "inset-5"
+
   return image ? (
-    <Image
-      src={image}
-      alt="Thumbnail"
-      className="absolute inset-0 object-cover object-center"
-      draggable={false}
-      quality={50}
-      sizes="(max-width: 576px) 280px, (max-width: 768px) 360px, (max-width: 992px) 480px, 800px"
-      fill
-    />
+    <div className={clx("absolute", insetClass)}>
+      <Image
+        src={image}
+        alt="Thumbnail"
+        className="object-contain object-center"
+        draggable={false}
+        quality={70}
+        sizes="(max-width: 576px) 220px, (max-width: 768px) 260px, (max-width: 992px) 320px, 520px"
+        fill
+      />
+    </div>
   ) : (
     <div className="w-full h-full absolute inset-0 flex items-center justify-center">
       <PlaceholderImage size={size === "small" ? 16 : 24} />

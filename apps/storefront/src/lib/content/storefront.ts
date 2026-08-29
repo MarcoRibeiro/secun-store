@@ -13,26 +13,33 @@ export const storefrontContent = {
     },
     home: {
       heroEyebrow: "Reparação e tecnologia recondicionada",
-      heroTitle: "Damos nova vida aos teus equipamentos.",
+      heroTitle: "Recondicionado não é sinónimo de risco.",
       heroText:
-        "Reparação de computadores, smartphones e tablets, com artigos em segunda mão selecionados, testados e prontos a usar.",
+        "É uma escolha inteligente quando cada equipamento é verificado, testado e entregue com garantia. Na Secunstore reparamos tecnologia e vendemos artigos em segunda mão prontos a usar, sem surpresas na caixa.",
       heroCta: "Ver produtos",
       featuredEyebrow: "Destaque",
-      featuredFallback: "Equipamentos testados e prontos a usar",
-      statOne: "Reparações rápidas",
-      statTwo: "Artigos verificados",
+      featuredFallback: "Equipamentos testados e certificados",
+      statOne: "Mais de 30 pontos de controlo",
+      statTwo: "12 meses de garantia Secunstore",
       collectionsEyebrow: "Coleções",
       collectionsTitle: "Explora por tipo de equipamento",
       collectionsCta: "Ver tudo",
       collectionLabel: "Coleção",
       collectionDescription:
-        "Equipamentos e acessórios selecionados para esta categoria.",
-      promoEyebrow: "Serviços e usados",
+        "Equipamentos e acessórios selecionados, verificados e prontos a usar.",
+      promoEyebrow: "Compra com tranquilidade",
       promoTitle:
-        "Repara o teu equipamento ou encontra uma alternativa em segunda mão.",
+        "Tecnologia de qualidade, verificada por nós, para que poupes sem abdicar da confiança.",
+      promoText:
+        "Cada produto passa por uma verificação cuidada ao ecrã, bateria, câmaras, ligações, botões, sensores e estrutura. Se não cumprir os nossos critérios, não entra na loja.",
+      promoHighlights: [
+        "Relatório detalhado do estado real do produto",
+        "14 dias para devolução, como numa loja tradicional",
+        "Envio seguro ou levantamento em loja",
+      ],
       promoCta: "Explorar loja",
       productsEyebrow: "Produtos",
-      productsTitle: "Produtos em destaque",
+      productsTitle: "Recondicionados e usados em destaque",
     },
     listing: {
       shopEyebrow: "Loja",
@@ -59,23 +66,26 @@ export const storefrontContent = {
     },
     about: {
       title: "Sobre nós",
-      description: "Conhece melhor a nossa loja.",
+      description:
+        "Conhece a Secunstore: reparação técnica, tecnologia recondicionada e artigos em segunda mão verificados.",
       eyebrow: "Sobre nós",
-      heading: "Reparação, reutilização e tecnologia com mais vida.",
+      heading: "Reparamos, verificamos e damos uma segunda vida à tecnologia.",
       intro:
-        "Somos uma loja especializada em reparação de computadores, smartphones e equipamentos eletrónicos, com venda de artigos em segunda mão revistos e preparados para voltar ao dia a dia.",
+        "A Secunstore existe para tornar a compra de tecnologia usada mais transparente e segura. Trabalhamos com computadores, smartphones, tablets e acessórios, combinando reparação técnica com venda de equipamentos recondicionados ou em segunda mão, sempre avaliados por nós.",
+      story:
+        "Sabemos as dúvidas normais de quem compra usado: se a bateria dura, se há avarias escondidas, se o equipamento está mesmo em bom estado. Por isso, verificamos cada artigo com critérios claros, explicamos o estado real do produto e só colocamos à venda o que merece chegar às mãos do cliente.",
       cards: [
         {
-          title: "Reparação técnica",
-          text: "Diagnóstico e intervenção em computadores, smartphones, tablets e acessórios.",
+          title: "Verificação rigorosa",
+          text: "Mais de 30 pontos de controlo, incluindo ecrã, bateria, câmaras, ligações, botões, sensores e estrutura.",
         },
         {
-          title: "Segunda mão verificada",
-          text: "Equipamentos testados, limpos e selecionados antes de chegarem à loja.",
+          title: "Garantia e devolução",
+          text: "Todos os artigos incluem 12 meses de garantia Secunstore e 14 dias para devolução.",
         },
         {
-          title: "Apoio próximo",
-          text: "Ajuda direta para escolher, reparar ou substituir o equipamento certo.",
+          title: "Reparação próxima",
+          text: "Diagnóstico e intervenção em computadores, smartphones, tablets e acessórios, com apoio direto e claro.",
         },
       ],
       cta: "Explorar produtos",
@@ -89,6 +99,20 @@ export const storefrontContent = {
       about: "Sobre nós",
       shop: "Loja",
       bag: "Carrinho",
+      addressTitle: "Morada",
+      address: "Rua António Saldanha nº 119, Fafe",
+      addressUrl:
+        "https://www.google.com/maps?q=Rua+Ant%C3%B3nio+Saldanha+119,+Fafe",
+      scheduleTitle: "Horário",
+      schedule: "Seg-Sex: 10:00-13:00; 15:00-19:30",
+      contactTitle: "Contacto",
+      phone: "+351 911 179 900",
+      phoneUrl: "tel:+351911179900",
+      socialTitle: "Siga-nos",
+      facebook: "Facebook",
+      facebookUrl: "https://www.facebook.com/crcsmartphones/",
+      instagram: "Instagram",
+      instagramUrl: "https://www.instagram.com/secun.store/",
       rights: "Todos os direitos reservados.",
     },
     account: {

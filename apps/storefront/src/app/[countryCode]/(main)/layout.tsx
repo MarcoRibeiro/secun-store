@@ -29,21 +29,23 @@ export default async function PageLayout(props: {
   }
 
   return (
-    <>
+    <div className="flex min-h-screen flex-col bg-slate-50">
       <Nav countryCode={countryCode} />
-      {customer && cart && (
-        <CartMismatchBanner customer={customer} cart={cart} />
-      )}
+      <div className="flex-1">
+        {customer && cart && (
+          <CartMismatchBanner customer={customer} cart={cart} />
+        )}
 
-      {cart && (
-        <FreeShippingPriceNudge
-          variant="popup"
-          cart={cart}
-          shippingOptions={shippingOptions}
-        />
-      )}
-      {props.children}
+        {cart && (
+          <FreeShippingPriceNudge
+            variant="popup"
+            cart={cart}
+            shippingOptions={shippingOptions}
+          />
+        )}
+        {props.children}
+      </div>
       <Footer />
-    </>
+    </div>
   )
 }

@@ -22,9 +22,10 @@ export default function AboutUsPage() {
             {content.about.heading}
           </h1>
         </div>
-        <p className="text-base-regular text-slate-600">
-          {content.about.intro}
-        </p>
+        <div className="space-y-4 text-base-regular text-slate-600">
+          <p>{content.about.intro}</p>
+          <p>{content.about.story}</p>
+        </div>
       </div>
 
       <div className="mt-14 grid gap-4 small:grid-cols-3">

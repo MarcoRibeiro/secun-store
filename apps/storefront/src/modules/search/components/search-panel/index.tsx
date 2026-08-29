@@ -118,13 +118,15 @@ export default function SearchPanel({ recommendedProducts }: SearchPanelProps) {
                     >
                       <div className="relative aspect-square overflow-hidden rounded bg-slate-100">
                         {product.thumbnail && (
-                          <Image
-                            src={product.thumbnail}
-                            alt={product.title}
-                            fill
-                            sizes="64px"
-                            className="object-cover"
-                          />
+                          <div className="absolute inset-2">
+                            <Image
+                              src={product.thumbnail}
+                              alt={product.title}
+                              fill
+                              sizes="48px"
+                              className="object-contain"
+                            />
+                          </div>
                         )}
                       </div>
                       <div className="min-w-0">

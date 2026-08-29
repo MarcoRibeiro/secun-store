@@ -33,20 +33,22 @@ const Hero = ({ product }: { product?: HttpTypes.StoreProduct }) => {
         </div>
 
         <div className="grid justify-items-center gap-4 small:justify-items-end">
-          <div className="relative aspect-[4/5] w-full max-w-[300px] overflow-hidden border border-slate-200 bg-white shadow-xl shadow-slate-200/80 small:max-w-[360px]">
+          <div className="relative aspect-[4/5] w-full max-w-[300px] overflow-hidden border border-slate-200 bg-slate-50 shadow-xl shadow-slate-200/80 small:max-w-[360px]">
             {heroImage ? (
-              <Image
-                src={heroImage}
-                alt={product?.title || content.home.featuredFallback}
-                fill
-                priority
-                sizes="(max-width: 1024px) 300px, 360px"
-                className="object-cover"
-              />
+              <div className="absolute inset-6">
+                <Image
+                  src={heroImage}
+                  alt={product?.title || content.home.featuredFallback}
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 260px, 320px"
+                  className="object-contain"
+                />
+              </div>
             ) : (
               <div className="h-full w-full bg-[linear-gradient(135deg,#f8fafc,#7dd3fc_52%,#ffffff)]" />
             )}
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/5 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-5">
               <p className="text-small-semi uppercase tracking-[0.16em] text-sky-200">
                 {content.home.featuredEyebrow}
