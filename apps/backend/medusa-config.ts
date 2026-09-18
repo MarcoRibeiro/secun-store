@@ -7,13 +7,15 @@ if (!['shared', 'server', 'worker'].includes(workerMode)) {
   throw new Error('MEDUSA_WORKER_MODE must be shared, server, or worker')
 }
 
+// The build loads this config but does not connect to runtime services.
+const isBuild = process.argv[2] === 'build'
 const redisUrl = process.env.REDIS_URL
-if (workerMode !== 'shared' && !redisUrl) {
+if (!isBuild && workerMode !== 'shared' && !redisUrl) {
   throw new Error('REDIS_URL is required for separate server and worker instances')
 }
 
 const isProduction = process.env.NODE_ENV === 'production'
-if (isProduction && (!process.env.JWT_SECRET || !process.env.COOKIE_SECRET ||
+if (isProduction && !isBuild && (!process.env.JWT_SECRET || !process.env.COOKIE_SECRET ||
     process.env.JWT_SECRET === 'supersecret' || process.env.COOKIE_SECRET === 'supersecret')) {
   throw new Error('Set unique JWT_SECRET and COOKIE_SECRET values for production')
 }
