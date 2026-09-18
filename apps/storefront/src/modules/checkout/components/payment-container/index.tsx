@@ -5,6 +5,7 @@ import React, { useContext, useMemo, type JSX } from "react"
 import Radio from "@modules/common/components/radio"
 
 import { isManual } from "@lib/constants"
+import { getStorefrontContent } from "@lib/content/storefront"
 import SkeletonCardDetails from "@modules/skeletons/components/skeleton-card-details"
 import { CardElement } from "@stripe/react-stripe-js"
 import { StripeCardElementOptions } from "@stripe/stripe-js"
@@ -27,6 +28,8 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
   children,
 }) => {
   const isDevelopment = process.env.NODE_ENV === "development"
+  const content = getStorefrontContent()
+  const isSelected = selectedPaymentOptionId === paymentProviderId
 
   return (
     <RadioGroupOption
@@ -36,14 +39,13 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
       className={clx(
         "flex flex-col gap-y-2 text-small-regular cursor-pointer py-4 border rounded-rounded px-8 mb-2 hover:shadow-borders-interactive-with-active",
         {
-          "border-ui-border-interactive":
-            selectedPaymentOptionId === paymentProviderId,
+          "border-ui-border-interactive": isSelected,
         }
       )}
     >
       <div className="flex items-center justify-between ">
         <div className="flex items-center gap-x-4">
-          <Radio checked={selectedPaymentOptionId === paymentProviderId} />
+          <Radio checked={isSelected} />
           <Text className="text-base-regular">
             {paymentInfoMap[paymentProviderId]?.title || paymentProviderId}
           </Text>
@@ -57,6 +59,32 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
       </div>
       {isManual(paymentProviderId) && isDevelopment && (
         <PaymentTest className="small:hidden text-[10px]" />
+      )}
+      {isManual(paymentProviderId) && isSelected && (
+        <div className="mt-3 rounded-md border border-sky-100 bg-sky-50 p-4 text-sm text-slate-700">
+          <p>{content.checkout.bankTransfer.description}</p>
+          <div className="mt-4 grid gap-3 small:grid-cols-2">
+            <div>
+              <p className="text-small-semi uppercase tracking-[0.12em] text-slate-500">
+                {content.checkout.bankTransfer.accountHolderLabel}
+              </p>
+              <p className="mt-1 font-semibold text-slate-950">
+                {content.checkout.bankTransfer.accountHolder}
+              </p>
+            </div>
+            <div>
+              <p className="text-small-semi uppercase tracking-[0.12em] text-slate-500">
+                {content.checkout.bankTransfer.ibanLabel}
+              </p>
+              <p className="mt-1 font-semibold text-slate-950">
+                {content.checkout.bankTransfer.iban}
+              </p>
+            </div>
+          </div>
+          <p className="mt-4 text-xs leading-5 text-slate-500">
+            {content.checkout.bankTransfer.note}
+          </p>
+        </div>
       )}
       {children}
     </RadioGroupOption>

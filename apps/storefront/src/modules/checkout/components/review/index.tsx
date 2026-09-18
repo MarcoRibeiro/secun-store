@@ -2,11 +2,13 @@
 
 import { Heading, Text, clx } from "@modules/common/components/ui"
 
+import { getStorefrontContent } from "@lib/content/storefront"
 import PaymentButton from "../payment-button"
 import { useSearchParams } from "next/navigation"
 import { HttpTypes } from "@medusajs/types"
 
 const Review = ({ cart }: { cart: HttpTypes.StoreCart }) => {
+  const content = getStorefrontContent()
   const searchParams = useSearchParams()
 
   const isOpen = searchParams.get("step") === "review"
@@ -32,7 +34,7 @@ const Review = ({ cart }: { cart: HttpTypes.StoreCart }) => {
             }
           )}
         >
-          Review
+          {content.checkout.reviewTitle}
         </Heading>
       </div>
       {isOpen && previousStepsCompleted && (
@@ -40,10 +42,7 @@ const Review = ({ cart }: { cart: HttpTypes.StoreCart }) => {
           <div className="flex items-start gap-x-1 w-full mb-6">
             <div className="w-full">
               <Text className="txt-medium-plus text-ui-fg-base mb-1">
-                By clicking the Place Order button, you confirm that you have
-                read, understand and accept our Terms of Use, Terms of Sale and
-                Returns Policy and acknowledge that you have read Medusa
-                Store&apos;s Privacy Policy.
+                {content.checkout.reviewText}
               </Text>
             </div>
           </div>

@@ -27,6 +27,7 @@ export const storefrontContent = {
       collectionLabel: "Coleção",
       collectionDescription:
         "Equipamentos e acessórios selecionados, verificados e prontos a usar.",
+      collectionCardCta: "Ver coleção",
       promoEyebrow: "Compra com tranquilidade",
       promoTitle:
         "Tecnologia de qualidade, verificada por nós, para que poupes sem abdicar da confiança.",
@@ -63,6 +64,35 @@ export const storefrontContent = {
       viewProduct: "Ver produto",
       resultsTitle: "Resultados para",
       empty: "Não encontrámos produtos. Tenta pesquisar por outro termo.",
+    },
+    checkout: {
+      paymentTitle: "Pagamento",
+      edit: "Editar",
+      paymentMethod: "Método de pagamento",
+      paymentDetails: "Detalhes do pagamento",
+      giftCard: "Cartão oferta",
+      selectPaymentMethod: "Seleciona um método de pagamento",
+      continueToReview: "Continuar para revisão",
+      enterCardDetails: "Introduzir dados do cartão",
+      confirmOrder: "Confirmar encomenda",
+      placeOrder: "Finalizar encomenda",
+      reviewTitle: "Revisão",
+      reviewText:
+        "Ao confirmares a encomenda, declaras que leste e aceitas os termos de utilização, as condições de venda e a política de devoluções da Secunstore.",
+      bankTransfer: {
+        title: "Transferência bancária",
+        description:
+          "Depois de confirmares a encomenda, faz a transferência e usa o número da encomenda como referência.",
+        accountHolderLabel: "Titular",
+        accountHolder: "Secunstore",
+        ibanLabel: "IBAN",
+        iban: "PT50 XXXX XXXX XXXX XXXX XXXX X",
+        note:
+          "A encomenda será processada após confirmação do pagamento. Podes enviar o comprovativo por WhatsApp para +351 911 179 900.",
+        confirmationTitle: "Dados para transferência",
+        confirmationText:
+          "Usa o número da encomenda como referência da transferência para conseguirmos confirmar o pagamento mais rapidamente.",
+      },
     },
     about: {
       title: "Sobre nós",

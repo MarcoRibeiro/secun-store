@@ -1,5 +1,5 @@
 import { getStorefrontContent } from "@lib/content/storefront"
-import { ArrowRight } from "@medusajs/icons"
+import { ArrowRight, ListCheckbox, ShieldCheck } from "@medusajs/icons"
 import { HttpTypes } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Image from "next/image"
@@ -7,6 +7,18 @@ import Image from "next/image"
 const Hero = ({ product }: { product?: HttpTypes.StoreProduct }) => {
   const content = getStorefrontContent()
   const heroImage = product?.thumbnail || product?.images?.[0]?.url
+  const trustBadges = [
+    {
+      value: "30+",
+      label: content.home.statOne,
+      icon: <ListCheckbox />,
+    },
+    {
+      value: "12",
+      label: content.home.statTwo,
+      icon: <ShieldCheck />,
+    },
+  ]
 
   return (
     <section className="relative overflow-hidden border-b border-slate-200 bg-slate-50">
@@ -32,40 +44,77 @@ const Hero = ({ product }: { product?: HttpTypes.StoreProduct }) => {
           </LocalizedClientLink>
         </div>
 
-        <div className="grid justify-items-center gap-4 small:justify-items-end">
-          <div className="relative aspect-[4/5] w-full max-w-[300px] overflow-hidden border border-slate-200 bg-slate-50 shadow-xl shadow-slate-200/80 small:max-w-[360px]">
-            {heroImage ? (
-              <div className="absolute inset-6">
-                <Image
-                  src={heroImage}
-                  alt={product?.title || content.home.featuredFallback}
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 260px, 320px"
-                  className="object-contain"
-                />
+        <div className="grid justify-items-center small:justify-items-end">
+          <div className="relative w-full max-w-[320px] small:max-w-[560px]">
+            <div className="absolute -right-2 bottom-8 z-20 hidden w-[240px] overflow-hidden rounded-md border border-slate-200 bg-white/95 shadow-xl shadow-slate-200/70 backdrop-blur small:block">
+              <p className="border-b border-slate-100 bg-slate-50 px-4 py-3 text-small-semi uppercase tracking-[0.14em] text-sky-600">
+                Verificado por nós
+              </p>
+              {trustBadges.map((badge) => (
+                <div
+                  key={badge.value}
+                  className="flex items-center gap-3 border-b border-slate-100 px-4 py-3 last:border-b-0"
+                >
+                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md bg-sky-50 text-sky-600">
+                    {badge.icon}
+                  </span>
+                  <div>
+                    <p className="text-[30px] font-semibold leading-none text-slate-950">
+                      {badge.value}
+                    </p>
+                    <p className="mt-1.5 text-xs leading-4 text-slate-600">
+                      {badge.label}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="relative aspect-[4/5] overflow-hidden border border-slate-200 bg-white shadow-2xl shadow-slate-200/80 small:mr-36 small:max-w-[370px]">
+              {heroImage ? (
+                <div className="absolute inset-x-6 bottom-24 top-10 small:top-16">
+                  <Image
+                    src={heroImage}
+                    alt={product?.title || content.home.featuredFallback}
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 280px, 360px"
+                    className="object-contain"
+                  />
+                </div>
+              ) : (
+                <div className="h-full w-full bg-[linear-gradient(135deg,#f8fafc,#7dd3fc_52%,#ffffff)]" />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/5 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-5">
+                <p className="text-small-semi uppercase tracking-[0.16em] text-sky-200">
+                  {content.home.featuredEyebrow}
+                </p>
+                <p className="mt-2 text-2xl-regular text-white">
+                  {product?.title || content.home.featuredFallback}
+                </p>
               </div>
-            ) : (
-              <div className="h-full w-full bg-[linear-gradient(135deg,#f8fafc,#7dd3fc_52%,#ffffff)]" />
-            )}
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/5 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-5">
-              <p className="text-small-semi uppercase tracking-[0.16em] text-sky-200">
-                {content.home.featuredEyebrow}
-              </p>
-              <p className="mt-2 text-2xl-regular text-white">
-                {product?.title || content.home.featuredFallback}
-              </p>
             </div>
-          </div>
-          <div className="grid w-full max-w-[360px] grid-cols-2 gap-4">
-            <div className="border border-slate-200 bg-white p-5 text-slate-600 shadow-sm">
-              <p className="text-2xl-semi text-sky-600">01</p>
-              <p className="mt-2 text-sm">{content.home.statOne}</p>
-            </div>
-            <div className="border border-slate-200 bg-white p-5 text-slate-600 shadow-sm">
-              <p className="text-2xl-semi text-sky-600">02</p>
-              <p className="mt-2 text-sm">{content.home.statTwo}</p>
+
+            <div className="mt-3 grid grid-cols-2 gap-3 small:hidden">
+              {trustBadges.map((badge) => (
+                <div
+                  key={badge.value}
+                  className="rounded-md border border-slate-200 bg-white p-3 shadow-sm"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="grid h-8 w-8 place-items-center rounded-md bg-sky-50 text-sky-600">
+                      {badge.icon}
+                    </span>
+                    <p className="text-2xl-semi leading-none text-slate-950">
+                      {badge.value}
+                    </p>
+                  </div>
+                  <p className="mt-2 text-xs leading-4 text-slate-600">
+                    {badge.label}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>

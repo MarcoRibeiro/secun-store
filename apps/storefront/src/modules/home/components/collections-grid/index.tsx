@@ -3,6 +3,7 @@ import Image from "next/image"
 import { getStorefrontContent } from "@lib/content/storefront"
 import { listProducts } from "@lib/data/products"
 import { getMetadataImage } from "@lib/util/metadata-image"
+import { ArrowRight } from "@medusajs/icons"
 import { HttpTypes } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
@@ -61,7 +62,7 @@ export default async function CollectionsGrid({
       </div>
 
       <div className="grid gap-3 small:grid-cols-2 large:grid-cols-5">
-        {collectionsWithProducts.map(({ collection, product }, index) => {
+        {collectionsWithProducts.map(({ collection, product }) => {
           const image =
             getMetadataImage(collection) ||
             product?.thumbnail ||
@@ -71,32 +72,35 @@ export default async function CollectionsGrid({
             <LocalizedClientLink
               key={collection.id}
               href={`/collections/${collection.handle}`}
-              className={[
-                "group relative min-h-[240px] overflow-hidden border border-slate-200 bg-white shadow-sm",
-              ].join(" ")}
+              className="group overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-sky-300 hover:shadow-lg hover:shadow-slate-200/80"
             >
-              {image ? (
-                <Image
-                  src={image}
-                  alt={collection.title}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover transition duration-500 group-hover:scale-[1.03]"
-                />
-              ) : (
-                <div className="h-full w-full bg-[linear-gradient(135deg,#f8fafc,#7dd3fc,#ffffff)]" />
-              )}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-6">
-                <p className="text-small-semi uppercase tracking-[0.16em] text-sky-200">
+              <div className="relative aspect-[4/3] bg-slate-50">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_15%,rgba(14,165,233,0.12),transparent_34%)]" />
+                {image ? (
+                  <div className="absolute inset-5">
+                    <Image
+                      src={image}
+                      alt={collection.title}
+                      fill
+                      sizes="(max-width: 1024px) 50vw, 220px"
+                      className="object-contain transition duration-500 group-hover:scale-[1.04]"
+                    />
+                  </div>
+                ) : (
+                  <div className="absolute inset-5 bg-[linear-gradient(135deg,#e0f2fe,#ffffff)]" />
+                )}
+              </div>
+              <div className="border-t border-slate-100 p-4">
+                <p className="text-small-semi uppercase tracking-[0.16em] text-sky-600">
                   {content.home.collectionLabel}
                 </p>
-                <h3 className="mt-2 text-2xl-regular text-white">
+                <h3 className="mt-2 truncate text-xl-regular text-slate-950">
                   {collection.title}
                 </h3>
-                <p className="mt-3 max-w-sm text-sm text-slate-300 opacity-0 transition duration-300 group-hover:opacity-100">
-                  {content.home.collectionDescription}
-                </p>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-sky-700 transition group-hover:text-sky-500">
+                  {content.home.collectionCardCta}
+                  <ArrowRight />
+                </span>
               </div>
             </LocalizedClientLink>
           )

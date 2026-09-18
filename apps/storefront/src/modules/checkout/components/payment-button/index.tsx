@@ -1,6 +1,7 @@
 "use client"
 
 import { isManual, isStripeLike } from "@lib/constants"
+import { getStorefrontContent } from "@lib/content/storefront"
 import { placeOrder } from "@lib/data/cart"
 import { HttpTypes } from "@medusajs/types"
 import { Button } from "@modules/common/components/ui"
@@ -17,6 +18,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
   cart,
   "data-testid": dataTestId,
 }) => {
+  const content = getStorefrontContent()
   const notReady =
     !cart ||
     !cart.shipping_address ||
@@ -40,7 +42,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
         <ManualTestPaymentButton notReady={notReady} data-testid={dataTestId} />
       )
     default:
-      return <Button disabled>Select a payment method</Button>
+      return <Button disabled>{content.checkout.selectPaymentMethod}</Button>
   }
 }
 
@@ -53,6 +55,7 @@ const StripePaymentButton = ({
   notReady: boolean
   "data-testid"?: string
 }) => {
+  const content = getStorefrontContent()
   const [submitting, setSubmitting] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
@@ -141,7 +144,7 @@ const StripePaymentButton = ({
         isLoading={submitting}
         data-testid={dataTestId}
       >
-        Place order
+        {content.checkout.placeOrder}
       </Button>
       <ErrorMessage
         error={errorMessage}
@@ -152,6 +155,7 @@ const StripePaymentButton = ({
 }
 
 const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
+  const content = getStorefrontContent()
   const [submitting, setSubmitting] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
@@ -180,7 +184,7 @@ const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
         size="large"
         data-testid="submit-order-button"
       >
-        Place order
+        {content.checkout.confirmOrder}
       </Button>
       <ErrorMessage
         error={errorMessage}

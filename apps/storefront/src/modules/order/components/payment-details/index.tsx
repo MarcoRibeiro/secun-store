@@ -1,6 +1,7 @@
 import { Container, Heading, Text } from "@modules/common/components/ui"
 
-import { isStripeLike, paymentInfoMap } from "@lib/constants"
+import { isManual, isStripeLike, paymentInfoMap } from "@lib/constants"
+import { getStorefrontContent } from "@lib/content/storefront"
 import { convertToLocale } from "@lib/util/money"
 import { HttpTypes } from "@medusajs/types"
 
@@ -9,6 +10,7 @@ type PaymentDetailsProps = {
 }
 
 const PaymentDetails = ({ order }: PaymentDetailsProps) => {
+  const content = getStorefrontContent()
   const payment = order.payment_collections?.[0].payments?.[0]
   const paymentDate = payment?.created_at
     ? new Date(payment.created_at).toLocaleString("pt-PT")
@@ -30,7 +32,8 @@ const PaymentDetails = ({ order }: PaymentDetailsProps) => {
                 className="txt-medium text-ui-fg-subtle"
                 data-testid="payment-method"
               >
-                {paymentInfoMap[payment.provider_id].title}
+                {paymentInfoMap[payment.provider_id]?.title ||
+                  payment.provider_id}
               </Text>
             </div>
             <div className="flex flex-col rounded-md border border-slate-200 bg-slate-50 p-4 small:col-span-2">
@@ -39,7 +42,7 @@ const PaymentDetails = ({ order }: PaymentDetailsProps) => {
               </Text>
               <div className="flex gap-2 txt-medium text-ui-fg-subtle items-center">
                 <Container className="flex items-center h-7 w-fit p-2 bg-ui-button-neutral-hover">
-                  {paymentInfoMap[payment.provider_id].icon}
+                  {paymentInfoMap[payment.provider_id]?.icon}
                 </Container>
                 <Text data-testid="payment-amount">
                   {isStripeLike(payment.provider_id) && payment.data?.card_last4
@@ -51,6 +54,37 @@ const PaymentDetails = ({ order }: PaymentDetailsProps) => {
                 </Text>
               </div>
             </div>
+            {isManual(payment.provider_id) && (
+              <div className="rounded-md border border-sky-100 bg-sky-50 p-4 small:col-span-3">
+                <Text className="txt-medium-plus text-ui-fg-base mb-2">
+                  {content.checkout.bankTransfer.confirmationTitle}
+                </Text>
+                <p className="text-sm text-slate-600">
+                  {content.checkout.bankTransfer.confirmationText}
+                </p>
+                <div className="mt-4 grid gap-3 small:grid-cols-2">
+                  <div>
+                    <p className="text-small-semi uppercase tracking-[0.12em] text-slate-500">
+                      {content.checkout.bankTransfer.accountHolderLabel}
+                    </p>
+                    <p className="mt-1 font-semibold text-slate-950">
+                      {content.checkout.bankTransfer.accountHolder}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-small-semi uppercase tracking-[0.12em] text-slate-500">
+                      {content.checkout.bankTransfer.ibanLabel}
+                    </p>
+                    <p className="mt-1 font-semibold text-slate-950">
+                      {content.checkout.bankTransfer.iban}
+                    </p>
+                  </div>
+                </div>
+                <p className="mt-4 text-xs leading-5 text-slate-500">
+                  {content.checkout.bankTransfer.note}
+                </p>
+              </div>
+            )}
           </div>
         )}
       </div>

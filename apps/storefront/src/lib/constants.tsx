@@ -1,4 +1,5 @@
 import { CreditCard } from "@medusajs/icons"
+import BankTransfer from "@modules/common/icons/bank-transfer"
 import Bancontact from "@modules/common/icons/bancontact"
 import Ideal from "@modules/common/icons/ideal"
 import PayPal from "@modules/common/icons/paypal"
@@ -30,8 +31,8 @@ export const paymentInfoMap: Record<
     icon: <PayPal />,
   },
   pp_system_default: {
-    title: "Manual Payment",
-    icon: <CreditCard />,
+    title: "Transferência bancária",
+    icon: <BankTransfer />,
   },
   // Add more payment providers here
 }
